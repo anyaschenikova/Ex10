@@ -34,7 +34,7 @@ std::string infix2postfix(std::string infix) {
         str_out.push_back(' ');
       }
       stack.pop();
-    } else if (stack.isEmpty() || 
+    } else if (stack.isEmpty() ||
       returnPriority(stack.get()) < returnPriority(infix[i])) {
       stack.push(infix[i]);
     } else if (returnPriority(stack.get()) >= returnPriority(infix[i])) {
