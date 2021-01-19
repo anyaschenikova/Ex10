@@ -26,29 +26,26 @@ std::string infix2postfix(std::string infix) {
       }
       str_out.push_back(infix[i]);
       str_out.push_back(' ');
-    }
-    else if (infix[i] == '(')
+    } else if (infix[i] == '(') {
       stack.push(infix[i]);
-    else if (infix[i] == ')') {
+    } else if (infix[i] == ')') {
       while (stack.get() != '(') {
         str_out.push_back(stack.pop());
         str_out.push_back(' ');
       }
       stack.pop();
-    }
-    else if (stack.isEmpty() || 
+    } else if (stack.isEmpty() || 
       returnPriority(stack.get()) < returnPriority(infix[i])) {
       stack.push(infix[i]);
-    }
-    else if (returnPriority(stack.get()) >= returnPriority(infix[i])) {
-      while (!stack.isEmpty() && 
+    } else if (returnPriority(stack.get()) >= returnPriority(infix[i])) {
+      while (!stack.isEmpty() &&
         returnPriority(stack.get()) >= returnPriority(infix[i])) {
         str_out.push_back(stack.pop());
         str_out.push_back(' ');
       }
       stack.push(infix[i]);
     }
-  } 
+  }
   while (!stack.isEmpty()) {
     str_out.push_back(stack.pop());
     str_out.push_back(' ');
