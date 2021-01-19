@@ -15,7 +15,6 @@ int returnPriority(char a) {
 std::string infix2postfix(std::string infix) {
   MyStack<char> stack(infix.size());
   std::string str_out;
-  int j=0;
   for (int i = 0; i < infix.size(); i++) {
     if (infix[i] == ' ')
       continue;
@@ -38,10 +37,12 @@ std::string infix2postfix(std::string infix) {
       stack.pop();
     }
     else if (stack.isEmpty() || 
-    returnPriority(stack.get()) < returnPriority(infix[i]))
+      returnPriority(stack.get()) < returnPriority(infix[i])) {
       stack.push(infix[i]);
+    }
     else if (returnPriority(stack.get()) >= returnPriority(infix[i])) {
-      while (!stack.isEmpty() && returnPriority(stack.get()) >= returnPriority(infix[i])) {
+      while (!stack.isEmpty() && 
+        returnPriority(stack.get()) >= returnPriority(infix[i])) {
         str_out.push_back(stack.pop());
         str_out.push_back(' ');
       }
