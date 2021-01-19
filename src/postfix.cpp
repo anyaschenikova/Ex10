@@ -20,6 +20,11 @@ std::string infix2postfix(std::string infix) {
     if (infix[i] == ' ')
       continue;
     if (infix[i] >= '0' && infix[i] <= '9' || infix[i] == '.') {
+      if (infix[i] == '.') {
+        str_out.pop_back();
+        str_out.push_back(infix[i]);
+        continue;
+      }
       str_out.push_back(infix[i]);
       str_out.push_back(' ');
     }
